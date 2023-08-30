@@ -1,5 +1,6 @@
-require_relative "texts.rb"
-require_relative "logic.rb"
+require_relative "text.rb"
+require_relative "code_maker.rb"
+require_relative "code_breaker.rb"
 
 class MasterMind
     attr_accessor :game_mode
@@ -7,7 +8,7 @@ class MasterMind
     def initialize
         self.start_menu
         self.game_loop(@game_mode)
-        
+        self.play_again
     end
 
     private
@@ -27,7 +28,13 @@ class MasterMind
     end
     
     def play_again
-
+        Text.play_again
+        answer = gets.chomp.upcase
+        if answer == "Y"
+            MasterMind.new
+        else 
+            Text.greetings
+        end
     end
 end
 
